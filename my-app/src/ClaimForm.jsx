@@ -55,8 +55,9 @@ const ExpenseClaimForm = () => {
     <>
     <div className="expense-claim-form-container" style={{ backgroundImage: `url(${ClaimImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div>
-      <h1 style={{marginLeft:"20px"}}>Expense Claim Form</h1>
+      {/* <h1 style={{marginLeft:"20px"}}>Expense Claim Form</h1> */}
       <form onSubmit={handleSubmit} className="expense-claim-form">
+        <h2 class="text-center" style={{paddingBottom:"20px"}}>Expense Claim Form</h2>
         <div className="form-row">
           <label htmlFor="category">Category:</label>
           <select id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
@@ -75,11 +76,12 @@ const ExpenseClaimForm = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             maxLength={200}
+            style={{resize: "none"}}
           />
         </div>
         <div className="form-row">
           <label htmlFor="receipt-date">Receipt Date:</label>
-          <input type="date" id="receipt-date" value={receiptDate} onChange={(e) => setReceiptDate(e.target.value)} />
+          <input  type="date" id="receipt-date" value={receiptDate} onChange={(e) => setReceiptDate(e.target.value)} />
         </div>
         <div className="form-row">
           <label htmlFor="claim-amount">Claim Amount:</label>
