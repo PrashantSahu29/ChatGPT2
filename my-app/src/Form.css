@@ -111,3 +111,7 @@ button[type='reset'] {
 button[type='reset']:hover {
   background-color: #cc0000;
 }
+
+select {
+  width: 58%;
+}
