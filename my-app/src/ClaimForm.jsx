@@ -19,7 +19,7 @@ const ExpenseClaimForm = () => {
   const [error, setError] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  
+
   const handleClear = () => {
     setCategory('');
     setDescription('');
@@ -64,7 +64,42 @@ const ExpenseClaimForm = () => {
       handleClear();
     }
   };
-  
+
+
+  const getCurrentDate = () => {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1;
+    let dd = today.getDate();
+
+    if (dd < 10) {
+      dd = `0${dd}`;
+    }
+
+    if (mm < 10) {
+      mm = `0${mm}`;
+    }
+
+    return `${yyyy}-${mm}-${dd}`;
+  };
+
+  const getMinDate = () => {
+    const today = new Date();
+    const thirtyDaysAgo = new Date(today.setDate(today.getDate() - 30));
+    const yyyy = thirtyDaysAgo.getFullYear();
+    let mm = thirtyDaysAgo.getMonth() + 1;
+    let dd = thirtyDaysAgo.getDate();
+
+    if (dd < 10) {
+      dd = `0${dd}`;
+    }
+
+    if (mm < 10) {
+      mm = `0${mm}`;
+    }
+
+    return `${yyyy}-${mm}-${dd}`;
+  };
 
 
   return (
@@ -90,22 +125,34 @@ const ExpenseClaimForm = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               maxLength={200}
-              style={{ resize: "none" }}
               placeholder='(Max limit 200 char.)'
             />
           </div>
           <div className="form-row">
             <label htmlFor="receipt-date">Receipt Date:</label>
-            <input type="date" id="receipt-date" value={receiptDate} onChange={(e) => setReceiptDate(e.target.value)} />
+            <input type="date" placeholder="DD-MM-YYYY" id="receipt-date" value={receiptDate} onChange={(e) => setReceiptDate(e.target.value)} min={getMinDate()} max={getCurrentDate()} />
           </div>
           <div className="form-row">
             <label htmlFor="claim-amount">Claim Amount:</label>
-            <input placeholder='(Upto 2 demicals)' type="number" step="0.01" id="claim-amount" value={claimAmount} onChange={(e) => setClaimAmount(e.target.value)} />
+            <input
+              placeholder='(Up to 2 decimals)'
+              type="number"
+              step="0.01"
+              id="claim-amount"
+              value={claimAmount}
+              onChange={(e) => {
+                const { value } = e.target;
+                const regex = /^[0-9]*\.?[0-9]{0,2}$/; // Regular expression to allow numbers with up to 2 decimal places
+                if (regex.test(value)) {
+                  setClaimAmount(value);
+                }
+              }}
+            />
           </div>
           {error && <p className="error">{error}</p>}
-          <button type="submit" style={{ margin:"auto auto auto 27%" }}>Submit</button>
+          <button type="submit" style={{ margin: "auto auto auto 27%" }}>Submit</button>
           <button type="reset" onClick={handleClear} style={{ marginLeft: "20px" }}>Clear</button>
-          
+
         </form>
       </div>
     </div>
