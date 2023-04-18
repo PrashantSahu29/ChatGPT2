@@ -27,16 +27,7 @@ button[type="submit"] {
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 400px;
-}
-
-.expense-claim-form {
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 400px;
+  width: 500px;
 }
 
 .form-row {
@@ -84,8 +75,8 @@ textarea {
 }
 
 button[type='submit'] {
-  background-color: #007bff;
-  color: #fff;
+  background-color:  #9E9E9E;
+  color: black;
   border: none;
   border-radius: 5px;
   font-size: 16px;
@@ -95,23 +86,22 @@ button[type='submit'] {
 }
 
 button[type='submit']:hover {
-  background-color: #0069d9;
+  background-color:  #9E9E9E;
 }
 button[type='reset'] {
-  background-color: red;
-  color: #fff;
-  border: none;
+  color: black;
+  border: 2px solid lightgrey;
   border-radius: 5px;
   font-size: 16px;
   padding: 8px 16px;
   cursor: pointer;
   transition: background-color 0.2s;
+  background-color: white;
 }
 
-button[type='reset']:hover {
-  background-color: #cc0000;
-}
 
 select {
-  width: 58%;
+  width: 70%;
+ 
 }
+::-webkit-datetime-edit-year-field:not([aria-valuenow]), ::-webkit-datetime-edit-month-field:not([aria-valuenow]), ::-webkit-datetime-edit-day-field:not([aria-valuenow]) { color: transparent; }

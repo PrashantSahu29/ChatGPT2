@@ -134,7 +134,7 @@ const getMinDate = () => {
           <div className="form-row">
             <label htmlFor="category">Category:</label>
             {/* Dropdown to select the expense category */}
-            <select id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
+            <select id="category" style={{marginLeft:"5px"}} value={category} onChange={(e) => setCategory(e.target.value)}>
               <option value="">Select category</option>
               {/* Map through the categories to populate the dropdown options */}
               {categories.map((item, index) => (
@@ -147,17 +147,17 @@ const getMinDate = () => {
           <div className="form-row">
             <label htmlFor="description">Claim Description:</label>
             {/* Textarea to input the description of the expense claim */}
-            <textarea id="description" value={description} onChange={handleDescriptionChange} maxLength={200} placeholder="Eg. This is description" />
+            <textarea id="description" value={description} onChange={handleDescriptionChange} maxLength={200} placeholder="Enter your claim description" />
           </div>
           {/* Show the remaining character count */}
-          <div className="form-row" style={{ marginLeft: '42%', marginTop:"-15px", color: descriptionLength > 200 ? 'red' : 'black' }}>
+          <div className="form-row" style={{ marginLeft: '33%', marginTop:"-15px", color: descriptionLength > 200 ? 'red' : 'black' }}>
             Remaining characters: {200 - descriptionLength}
           </div>
 
           <div className="form-row">
             <label htmlFor="receipt-date">Receipt Date:</label>
             {/* Input field to select the date of the receipt */}
-            <input type="date" placeholder="DD-MM-YYYY" id="receipt-date" value={receiptDate} onChange={(e) => setReceiptDate(e.target.value)} min={getMinDate()} max={getCurrentDate()} />
+            <input type="date" placeholder="MM-DD-YYYY" id="receipt-date" value={receiptDate} onChange={(e) => setReceiptDate(e.target.value)} min={getMinDate()} max={getCurrentDate()} />
           </div>
 
           <div className="form-row">
@@ -181,11 +181,11 @@ const getMinDate = () => {
           {/* Display any errors if present */}
           {error && <p className="error">{error}</p>}
           {/* Submit and Clear buttons */}
-          <button type="submit" style={{ margin: 'auto auto auto 27%' }}>
-            Submit
-          </button>
-          <button type="reset" onClick={handleClear} style={{ marginLeft: '20px' }}>
+          <button type="reset" onClick={handleClear} style={{ marginLeft: '22%'}}>
             Clear
+          </button>
+          <button type="submit" style={{ margin: 'auto auto auto 14%' }}>
+            Submit
           </button>
           {/* Toast notifications */}
           <ToastContainer position="top-right" autoClose={2000} closeOnClick rtl={false} pauseOnFocusLoss pauseOnHover draggable theme="colored" />
