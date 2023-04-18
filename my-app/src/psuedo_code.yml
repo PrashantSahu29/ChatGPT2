@@ -1,0 +1,67 @@
+# Define the claim categories and their maximum policy amounts
+CLAIM_CATEGORIES:
+  - name: Telephone
+    maxAmount: 1000
+  - name: Internet
+    maxAmount: 1000
+  - name: Medical
+    maxAmount: 5000
+  - name: Travel
+    maxAmount: 25000
+
+# Define form data and error state variables
+formData:
+  category: ''
+  description: ''
+  receiptDate: ''
+  amount: ''
+errors: {}
+
+# Define form field validation functions
+validateCategory: >
+  function(category) {
+    const found = CLAIM_CATEGORIES.find((c) => c.name === category);
+    return found ? '' : 'Invalid category';
+  }
+
+validateDescription: >
+  function(description) {
+    return description.length <= 200 ? '' : 'Description must be 200 characters or less';
+  }
+
+validateReceiptDate: >
+  function(receiptDate, submissionDate) {
+    const diffDays = Math.ceil((new Date(submissionDate) - new Date(receiptDate)) / (1000 * 60 * 60 * 24));
+    return diffDays <= 30 ? '' : 'Receipt date should not be more than 30 days old';
+  }
+
+validateAmount: >
+  function(amount, category) {
+    const found = CLAIM_CATEGORIES.find((c) => c.name === category);
+    const maxAmount = found ? found.maxAmount : 0;
+    return parseFloat(amount) > 0 && parseFloat(amount) <= maxAmount ? '' : `Claim amount should be greater than 0 and less than or equal to ${maxAmount}`;
+  }
+
+# Define form submission function
+submitForm: >
+  function() {
+    # Clear previous errors
+    errors = {};
+
+    # Validate fields
+    errors.category = validateCategory(formData.category);
+    errors.description = validateDescription(formData.description);
+    errors.receiptDate = validateReceiptDate(formData.receiptDate, new Date());
+    errors.amount = validateAmount(formData.amount, formData.category);
+
+    # Check if any errors exist
+    const hasErrors = Object.values(errors).some((value) => value !== '');
+
+    if (hasErrors) {
+      # Display errors
+      console.log('Form fields contain errors:', errors);
+    } else {
+      # Submit form data
+      console.log('Submitting form data:', formData);
+    }
+  }
