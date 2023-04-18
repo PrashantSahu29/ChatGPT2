@@ -188,7 +188,7 @@ const getMinDate = () => {
             Clear
           </button>
           {/* Toast notifications */}
-          <ToastContainer position="top-right" autoClose={false} closeOnClick rtl={false} pauseOnFocusLoss pauseOnHover draggable theme="colored" />
+          <ToastContainer position="top-right" autoClose={2000} closeOnClick rtl={false} pauseOnFocusLoss pauseOnHover draggable theme="colored" />
         </form>
       </div>
     </div>
