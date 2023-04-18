@@ -144,7 +144,7 @@ const ExpenseClaimForm = () => {
               ))}
             </select>
           </div>
-          
+
 
           <div className="form-row">
             <label htmlFor="receipt-date">Receipt Date:</label>
